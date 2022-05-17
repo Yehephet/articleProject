@@ -1,0 +1,9 @@
+<div class="all_articles">
+  <div *ngFor="let article of articles" class="different_article">
+    <img src="{{article.imageUrl}}">
+    {{article.publishedAt | date: 'dd/MM/yyyy'}}
+    <div class="article_title">{{article.title}}</div>
+    <div class="article_text">{{article.summary | slice:0:100}}...</div>
+    <div class="button_read" [routerLink]="[article.id]">Read more</div>
+  </div>
+</div>
