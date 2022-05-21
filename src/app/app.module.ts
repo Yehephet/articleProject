@@ -9,7 +9,7 @@ import { ArticlesComponent } from './components/articles/articles.component';
 import { ArticlesDetailsComponent } from './components/articles-details/articles-details.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {ReactiveFormsModule} from "@angular/forms";
-g
+
 @NgModule({
   declarations: [
     AppComponent,
