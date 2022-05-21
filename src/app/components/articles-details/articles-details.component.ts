@@ -20,4 +20,8 @@ export class ArticlesDetailsComponent implements OnInit {
     })
   }
 
+  backToHomePage() {
+    history.back();
+  }
+
 }

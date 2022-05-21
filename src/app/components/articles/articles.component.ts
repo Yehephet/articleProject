@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ArticleModel} from "../../models/articleModel";
 import {ArticleService} from "../../services/article.service";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-articles',
@@ -9,12 +10,29 @@ import {ArticleService} from "../../services/article.service";
 })
 export class ArticlesComponent implements OnInit {
 
-  articles: ArticleModel[];
+  articles: ArticleModel[] = [];
+  article = new FormControl('');
+  dateToFormat = new Date();
 
-  constructor(private articleService: ArticleService) { }
+  searchArticlesForm: FormGroup = new FormGroup({
+    article: this.article
+  })
+
+  constructor(private articleService: ArticleService) {}
 
   ngOnInit(): void {
+
     this.articleService.getArticles().subscribe(value => this.articles = value);
+    this.searchArticlesForm.valueChanges.subscribe(() => {
+      this.searchArticle();
+    })
+  }
+
+  searchArticle() {
+    this.articleService.findArticlesByNameAndContent(
+      this.searchArticlesForm.value.article,
+      this.searchArticlesForm.value.article)
+      .subscribe(value => this.articles = value);
   }
 
 }

@@ -1,9 +1,33 @@
-<div class="all_articles">
-  <div *ngFor="let article of articles" class="different_article">
-    <img src="{{article.imageUrl}}">
-    {{article.publishedAt | date: 'dd/MM/yyyy'}}
-    <div class="article_title">{{article.title}}</div>
-    <div class="article_text">{{article.summary | slice:0:100}}...</div>
-    <div class="button_read" [routerLink]="[article.id]">Read more</div>
+<form [formGroup]="searchArticlesForm" class="search_form">
+  <label>Filter By Keywords</label>
+  <input matInput type="text" formControlName="article" class="input">
+  <mat-icon>search</mat-icon>
+</form>
+
+<div class="content_block">
+
+  <div *ngIf="articles" class="articles_results">
+    Results: {{articles.length}}
   </div>
+
+  <div class="all_articles">
+    <mat-card *ngFor="let article of articles" class="different_article">
+      <header class="article_img">
+        <img src="{{article.imageUrl}}">
+      </header>
+      <mat-card-header>
+        <mat-icon class="mat-icon">calendar_today</mat-icon>
+        <div class="article_date">{{article.publishedAt | date:'MMMM dd, yyyy'}}</div>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="article_title">{{article.title | slice: 0: 50}}</div>
+        <div class="article_text">{{article.summary | slice:0:100}}...</div>
+        <div class="button_read" [routerLink]="[article.id]">Read more
+          <span class="material-icons">
+            arrow_right_alt
+          </span></div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
 </div>

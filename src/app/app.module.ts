@@ -5,16 +5,26 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
 import {MaterialModule} from "./material.module";
+import { ArticlesComponent } from './components/articles/articles.component';
+import { ArticlesDetailsComponent } from './components/articles-details/articles-details.component';
+import {AppRoutingModule} from "./app-routing.module";
+import {ReactiveFormsModule} from "@angular/forms";
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ArticlesComponent,
+    ArticlesDetailsComponent,
+    FooterComponent,
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MaterialModule
+    ReactiveFormsModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
